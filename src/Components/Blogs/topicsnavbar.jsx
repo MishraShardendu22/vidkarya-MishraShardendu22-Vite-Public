@@ -37,7 +37,7 @@ const Topicsnavbar = (props) => {
   return (
     <>
       <div className="navbarContainer">
-        <Grid container spacing={2}>
+        <Grid container spacing={2} alignItems="center">
           <Grid item lg={2} sm={2}>
             <p className="firstItem">Latest Articles</p>
           </Grid>

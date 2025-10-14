@@ -25,6 +25,7 @@ function BlogPreview() {
         url: BLOGS.get.replace(':blogid', blogid),
         method: 'GET',
       });
+      console.log("Fetched Response:", response);
 
       if (response) {
         setBlog(response?.body?.blog);
@@ -43,7 +44,7 @@ function BlogPreview() {
 
   useEffect(() => {
     fetchBlog();
-  }, [fetchBlog]);
+  }, [blogid]);
   return (
     <>
       <Navbar />
@@ -66,7 +67,7 @@ function BlogPreview() {
               <div>
                 <Grid className={styles.blogTags} container spacing={2}>
                   {blog?.tags?.map((tag, index) => (
-                    <Grid item>
+                    <Grid item key={index}>
                       <Button className={styles.blogTag} key={index}>
                         {tag}
                       </Button>

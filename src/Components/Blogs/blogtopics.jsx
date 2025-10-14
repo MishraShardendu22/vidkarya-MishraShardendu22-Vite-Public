@@ -8,7 +8,7 @@ const Blogtopics = () => {
     <>
       <p className="mainHeading">Content you might dive deep </p>
 
-      <Grid className="mainContainer" container spacing={2}>
+      <Grid className="mainContainer1" container spacing={2}>
         {topics.map((topic) => {
           return (
             <Grid item lg={3} key={topic.id}>

@@ -15,47 +15,45 @@ const BlogCard = ({ blog }) => {
   };
 
   return (
-    <>
-      <Grid style={{ padding: '15px' }} item lg={4} key={blog._id}>
-        <Card className="blogcard" onClick={(_e) => navigate(`/blogs/${blog._id}`)}>
-          <div className="blogcard_img">
-            <img src={blog.thumbnailUrl} alt="blogimg" />
+    <Grid style={{ padding: '15px' }} item lg={4} md={6} sm={12} xs={12}>
+      <Card className="blogcard" onClick={() => navigate(`/blogs/${blog._id}`)}>
+        <div className="blogcard_img">
+          <img src={blog.thumbnailUrl} alt="blog" />
+        </div>
+
+        <div className="blogcard_content">
+          <div className="blogcard_title">
+            {truncateText(blog.title, 8)}
+            <MoreVertIcon fontSize="small" />
           </div>
-          <div className="blogcard_top">
-            <div className="blogcard_title">
-              {truncateText(blog.title, 8)}
-              <MoreVertIcon />
-            </div>
-            <div className="blogcard_tags">
-              <div style={{ display: 'flex' }}>
-                {' '}
-                {blog.tags.map((tag, index) => {
-                  if (index < 3) {
-                    return (
-                      <div key={index}>
-                        <p style={{ paddingRight: '1px' }}>
-                          {tag.toUpperCase()} {index < 2 && ','}
-                        </p>
-                      </div>
-                    );
-                  }
-                })}{' '}
-                -
-                {Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-                  .format(new Date(blog.updatedAt))
-                  .toUpperCase()}
-              </div>
-            </div>
-            <div className="blogcard_description">
-              <span style={{ fontWeight: 500 }}>{truncateText(blog.description, 12)} </span>
-            </div>
-            <div className="blog_author">
-              🖋 {blog.user ? capitalizeWords(blog.user.name) : 'Anonymous'}
-            </div>
+
+          <div className="blogcard_tags">
+            {blog.tags.slice(0, 3).map((tag, index) => (
+              <span key={index}>
+                {tag.toUpperCase()}
+                {index < blog.tags.slice(0, 3).length - 1 && ', '}
+              </span>
+            ))}
+            &nbsp;-&nbsp;
+            {Intl.DateTimeFormat('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+            })
+              .format(new Date(blog.updatedAt))
+              .toUpperCase()}
           </div>
-        </Card>
-      </Grid>
-    </>
+
+          <div className="blogcard_description">
+            {truncateText(blog.description, 12)}
+          </div>
+
+          <div className="blog_author">
+            🖋 {blog.user ? capitalizeWords(blog.user.name) : 'Anonymous'}
+          </div>
+        </div>
+      </Card>
+    </Grid>
   );
 };
 

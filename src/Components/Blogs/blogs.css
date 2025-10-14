@@ -98,10 +98,15 @@
   /* padding:40px 50px 10px 50px; */
   color:#5E5959;
 }
-.mainContainer{
+.topicCard .mainContainer{
   padding:30px !important;
   display: flex !important;
   justify-content: center !important;
+}
+
+.blogPageWrapper .blogsGridContainer {
+  padding: 30px !important;
+  width: 100%;
 }
 
 .topicCard{
@@ -140,6 +145,12 @@
   font-size:small;
 }
 
+.mainContainer1{
+  padding:30px !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
 
 /* css for topics navbar */
 
@@ -170,50 +181,66 @@
 }
 
 
-/*orginal  Blog card css */
-
-.blogcard{   
-  background-color:white !important;
+.blogcard {
+  background-color: white !important;
   margin: 20px auto;
-  height:325px;
-  width:335px;
+  height: 330px;
+  width: 335px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.blogcard_top{
-  background:white;
-  padding: 5px 5px 5px 10px;
-  width: 90%;
-  margin-top: -15px;
-  position: relative;
-  margin-left: 15px;
+.blogcard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
 }
 
-.blogcard_title{  
-  display:flex;
+.blogcard_img img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.blogcard_content {
+  padding-left:  15px;
+  padding-right: 15px;
+}
+
+.blogcard_title {
+  display: flex;
   justify-content: space-between;
-  color:black;
-  font-size:medium;
-  font-weight:600;    
+  align-items: center;
+  color: #000;
+  font-size: 1rem;
+  font-weight: 600;
+  /* margin-top: 5px; */
 }
 
-.blogcard_tags{
-  font-size:x-small;
-  color:#C0B7B7;
+.blogcard_tags {
+  font-size: 0.7rem;
+  color: #a0a0a0;
+  margin-top: 4px;
 }
 
-.blogcard_description{
-  padding-top: 5px;
+.blogcard_description {
+  margin-top: 10px;
   text-align: justify;
-  font-size: small;
+  font-size: 0.85rem;
+  color: #333;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
-.blog_author{
-    display: flex;
-    font-size: small;
-    font-weight: 500;
-    padding: 5px 0px;
-    color: #C0B7B7;
-    justify-content: flex-end;
+.blog_author {
+  display: flex;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #a0a0a0;
+  justify-content: flex-end;
+  margin-top: 10px;
 }
-

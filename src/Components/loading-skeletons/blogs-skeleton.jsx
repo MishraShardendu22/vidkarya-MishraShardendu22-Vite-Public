@@ -35,16 +35,12 @@ export default function BlogsSkeleton() {
 
 const BlogsSkeletonBox = () => {
   return (
-    <div className="border shadow-lg p-6 rounded-lg w-[70%]">
-      <div className="flex gap-1">
-        <div className="skeleton w-[100%] h-[10rem]"></div>
-      </div>
-      <div>
-        <div className="skeleton w-[45%] h-3 my-2"></div>
-        <div className="skeleton w-[40%] h-3 my-2"></div>
-        <div className="skeleton w-[30%] h-3 my-2"></div>
-        <div className="skeleton w-[25%] h-3 my-2" style={{ marginLeft: 'auto' }}></div>
-      </div>
+    <div className="skeleton-card">
+      <div className="skeleton skeleton-img"></div>
+      <div className="skeleton skeleton-line w-60"></div>
+      <div className="skeleton skeleton-line w-50"></div>
+      <div className="skeleton skeleton-line w-40"></div>
+      <div className="skeleton skeleton-line w-30 align-right"></div>
     </div>
   );
 };
