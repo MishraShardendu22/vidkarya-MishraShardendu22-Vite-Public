@@ -1,16 +1,31 @@
 import styles from "./aboutUs.module.css";
 import { ABOUT_ASSET } from "../../Assets/assetImages";
 import { Navbar } from "../../Components";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { vidkaryaChapters } from "../../data/vidkaryaChapters"
 
 
 
 function FounderProfile(props) {
   const { name, photoURL } = props;
+  const imgRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setVisible(true)),
+      { threshold: 0.2 }
+    );
+    if (imgRef.current) io.observe(imgRef.current);
+    return () => io.disconnect();
+  }, []);
   return (
     <div className={styles.profileWrapper}>
-      <img src={photoURL} className={styles.profilePhoto} alt="img" />
+      <img
+        ref={imgRef}
+        src={photoURL}
+        className={`${styles.profilePhoto} ${styles.imgReveal} ${visible ? styles.imgShow : ''}`}
+        alt="img"
+      />
       <span className={styles.founderName}> {name} </span>
       <span className={styles.founderDesc}> IIIT Dharwad </span>
     </div>
@@ -19,6 +34,73 @@ function FounderProfile(props) {
 
 export default function AboutUs() {
   const [selectedCollege, setSelectedCollege] = useState("IIIT-Dharwad");
+  const statsRef = useRef(null);
+  const [statsVisible, setStatsVisible] = useState(false);
+  const [reveals, setReveals] = useState({});
+  const rootRef = useRef(null);
+
+  const stats = [
+    { key: "notes", label: "Notes & Resources", value: 50 },
+    { key: "projects", label: "Student Projects", value: 15 },
+    { key: "users", label: "Active Members", value: 400 },
+    { key: "chapters", label: "College Chapters", value: 3 },
+  ];
+
+  const [counts, setCounts] = useState({ notes: 0, projects: 0, users: 0, chapters: 0 });
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setStatsVisible(true);
+        });
+      },
+      { threshold: 0.3 }
+    );
+    if (statsRef.current) observer.observe(statsRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Generic scroll reveal for sections
+  useEffect(() => {
+    const sections = rootRef.current?.querySelectorAll('[data-reveal]');
+    if (!sections || !sections.length) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        const next = {};
+        entries.forEach((e) => { if (e.isIntersecting) next[e.target.dataset.reveal] = true; });
+        setReveals((prev) => ({ ...prev, ...next }));
+      },
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.15 }
+    );
+    sections.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  // Animate numbers once visible
+  useEffect(() => {
+    if (!statsVisible) return;
+
+    const duration = 1200; // ms
+    const start = performance.now();
+    const targets = stats.reduce((acc, s) => ({ ...acc, [s.key]: s.value }), {});
+
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+    let raf;
+    const tick = (now) => {
+      const progress = Math.min(1, (now - start) / duration);
+      const eased = easeOutCubic(progress);
+      const next = {};
+      Object.keys(targets).forEach((k) => {
+        next[k] = Math.floor(targets[k] * eased);
+      });
+      setCounts(next);
+      if (progress < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [statsVisible]);
 
   const founders = [
     { name: "Chaitanya Giri", photoURL: ABOUT_ASSET.chaitanya_PhotoURL },
@@ -28,11 +110,26 @@ export default function AboutUs() {
     { name: "Brij Vaghani", photoURL: ABOUT_ASSET.brij_PhotoURL },
   ];
 
-  function TeamMemberProfile(props) {
+function TeamMemberProfile(props) {
   const { name, role, photoURL } = props;
+  const imgRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setVisible(true)),
+      { threshold: 0.2 }
+    );
+    if (imgRef.current) io.observe(imgRef.current);
+    return () => io.disconnect();
+  }, []);
   return (
     <div className={styles.currProfileWrapper}>
-      <img src={photoURL} className={styles.profilePhoto} alt={`${name} profile`} />
+      <img
+        ref={imgRef}
+        src={photoURL}
+        className={`${styles.profilePhoto} ${styles.imgReveal} ${visible ? styles.imgShow : ''}`}
+        alt={`${name} profile`}
+      />
       <span className={styles.memberName}>{name}</span>
       <span className={styles.memberRole}>{role}</span>
     </div>
@@ -152,12 +249,35 @@ export default function AboutUs() {
     );
   }
 
+  function StatsSection() {
+    return (
+      <section ref={statsRef}>
+        <div className={styles.statsHeading}>Small team, real impact</div>
+        <div className={styles.statsSub}>Every number here is earned with late nights, coffee, and community.</div>
+        <div className={styles.statsWrap}>
+          {stats.map((s, idx) => (
+            <div className={styles.statCard} key={s.key} style={{ animationDelay: `${idx * 80}ms` }}>
+              <div className={styles.statValue} data-target={s.value}>
+                {counts[s.key]?.toLocaleString?.() || 0}
+              </div>
+              <div className={styles.statLabel}>{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <>
       <Navbar />
-      <div className={styles.wrapper}>
+      <div className={`${styles.wrapper} ${styles.pageEnter}`} ref={rootRef}>
         {/* Landing Container */}
-        <div className={styles.landingDiv}>
+        <div className={`${styles.landingDiv} ${styles.reveal} ${reveals['hero'] ? styles.show : ''}`} data-reveal="hero">
+          <div className={styles.bgOrbs}>
+            <span className={styles.orbA}></span>
+            <span className={styles.orbB}></span>
+          </div>
           <div className={styles.landingImage}>
             <img
               src={ABOUT_ASSET.brandLogo}
@@ -197,8 +317,13 @@ export default function AboutUs() {
           </div>
         </div>
 
+        {/* Impact stats */}
+        <div className={`${styles.reveal} ${reveals['stats'] ? styles.show : ''}`} data-reveal="stats">
+          <StatsSection />
+        </div>
+
         {/* FUTURE GOAL */}
-        <div className={styles.mainContent}>
+        <div className={`${styles.mainContent} ${styles.reveal} ${reveals['goal'] ? styles.show : ''}`} data-reveal="goal">
           <span className={styles.mainSubHead}> Our Future Goal </span>
           <span className={styles.mainHead}>
             Empowering Tomorrow's Learning: Our Vision for Vidkarya's Future.
@@ -221,7 +346,7 @@ export default function AboutUs() {
         </div>
 
         {/* OUR TEAM */}
-        <div className={styles.mainContent}>
+        <div className={`${styles.mainContent} ${styles.reveal} ${reveals['team'] ? styles.show : ''}`} data-reveal="team">
           <span className={styles.mainSubHead}> Our Team </span>
           <span className={styles.mainHead}>
             Meet the Visionaries: Our Collaborative Force at Vidkarya
@@ -243,7 +368,7 @@ export default function AboutUs() {
         </div>
 
         {/* TEAM DETAILS */}
-        <div className={styles.foundingTeam}>
+        <div className={`${styles.foundingTeam} ${styles.reveal} ${reveals['founders'] ? styles.show : ''}`} data-reveal="founders">
           <div
             className={styles.teamCoverPic}
             style={{ backgroundImage: `url(${ABOUT_ASSET.founderCoverPic})` }}
@@ -289,7 +414,7 @@ export default function AboutUs() {
           </ul>
         </div> */}
 
-<div className={styles.mainContent}>
+        <div className={`${styles.mainContent} ${styles.reveal} ${reveals['chapters'] ? styles.show : ''}`} data-reveal="chapters">
           <span className={styles.mainSubHead}>College Chapters</span>
           <span className={styles.mainHead}>
             Our Collaborative Network Across Institutions

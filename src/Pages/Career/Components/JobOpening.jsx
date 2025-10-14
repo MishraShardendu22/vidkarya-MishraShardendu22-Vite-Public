@@ -4,12 +4,16 @@ import JobDescriptionModal from './Jobs/Moda';
 import Pagination from '@mui/material/Pagination';
 import React, { useState, useEffect } from 'react';
 import { sendReqToServer } from '../../../Hooks/useAxios';
+import FilterBar from './UI/FilterBar';
 
 const Job = () => {
   const [Jobs, setJobs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedDescription, setSelectedDescription] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [roleQuery, setRoleQuery] = useState('');
+  const [companyQuery, setCompanyQuery] = useState('');
+  const [locationQuery, setLocationQuery] = useState('');
   const itemsPerPage = 8;
 
   useEffect(() => {
@@ -32,7 +36,12 @@ const Job = () => {
   const totalPages = Math.ceil(Jobs.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentJobs = Jobs.slice(indexOfFirstItem, indexOfLastItem);
+  const filtered = Jobs.filter((j) =>
+    (roleQuery ? j.title.toLowerCase().includes(roleQuery.toLowerCase()) : true) &&
+    (companyQuery ? (j.company || '').toLowerCase().includes(companyQuery.toLowerCase()) : true) &&
+    (locationQuery ? (j.location || '').toLowerCase().includes(locationQuery.toLowerCase()) : true)
+  );
+  const currentJobs = filtered.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePagination = (event, pageNumber) => {
     setCurrentPage(pageNumber);
@@ -42,10 +51,20 @@ const Job = () => {
     <div className="w-[90%] mx-auto px-4 pb-10">
       <div className="text-center">
         <p className="heading">Discover Jobs</p>
-        <p className="text-[#838383] text-3xl mb-10">
+        <div className="mx-auto mt-2 h-1 w-24 rounded-full" style={{ backgroundColor: '#38B5AA' }} />
+        <p className="text-[#838383] text-xl md:text-2xl mb-10 mt-3">
           Your gateway to curated career opportunities, connecting IIIT Dharwad talent with
           industry-leading companies.
         </p>
+      </div>
+
+      <div className="mb-6">
+        <FilterBar>
+          <input placeholder="Search role" value={roleQuery} onChange={(e) => setRoleQuery(e.target.value)} />
+          <input placeholder="Company" value={companyQuery} onChange={(e) => setCompanyQuery(e.target.value)} />
+          <input placeholder="Location" value={locationQuery} onChange={(e) => setLocationQuery(e.target.value)} />
+          <div style={{ alignSelf: 'center', color: '#6b7280' }}>Total: {filtered.length}</div>
+        </FilterBar>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

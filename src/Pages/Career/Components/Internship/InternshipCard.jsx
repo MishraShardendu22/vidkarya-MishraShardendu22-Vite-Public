@@ -2,6 +2,7 @@ import React from 'react';
 import { FaMapMarkerAlt, FaCalendar, FaExternalLinkAlt } from 'react-icons/fa';
 import { BiMoneyWithdraw } from 'react-icons/bi';
 import Skeleton from '../Skeleton';
+import styles from './InternshipCard.module.css';
 
 const color = {
   orange: '#F97316',
@@ -20,56 +21,43 @@ const InternshipCard = ({ internship, onViewDescription, cardIndex, loading }) =
     );
 
   return (
-    <div className="w-full bg-white rounded-lg shadow-md overflow-hidden relative">
-      <div
-        className={`absolute top-0 w-3 h-full`}
-        style={{
-          backgroundColor: color.orange,
-          left: isEven ? '0' : 'auto',
-          right: isEven ? 'auto' : '0',
-        }}
-      ></div>
-      <div className="p-6 pl-8">
+    <div className={styles.card}>
+      <div className={styles.sideAccent} style={{ background: color.orange, left: isEven ? 0 : 'auto', right: isEven ? 'auto' : 0 }} />
+      <div className={styles.content}>
         <div className="mb-6 text-center">
-          <h2 className="text-xl font-semibold" style={{ color: color.green }}>
+          <h2 className={styles.title} style={{ color: color.green }}>
             {internship.title} - {internship.company}
           </h2>
         </div>
-        <div className="mb-6">
-          <p className="text-gray-600 text-sm">{internship.about || ''}</p>
+        <div className="mb-2">
+          <p className={styles.about}>{internship.about || ''}</p>
         </div>
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          <div className="flex items-center gap-2">
+        <div className={styles.tags}>
+          {internship.mode && <span className={styles.tag}>{internship.mode}</span>}
+          {internship.type && <span className={`${styles.tag} ${internship.type?.toLowerCase() === 'unpaid' ? styles.tagWarn : ''}`}>{internship.type}</span>}
+          {internship.duration && <span className={styles.tag}>{internship.duration}</span>}
+        </div>
+        <div className={styles.metaGrid}>
+          <div className={styles.meta}>
             <FaMapMarkerAlt className="w-5 h-5" style={{ color: color.green }} />
             <span className="text-sm">{internship.location || 'N/A'}</span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className={styles.meta}>
             <BiMoneyWithdraw className="w-5 h-5" style={{ color: color.green }} />
             <span className="text-sm">{internship.stipend || 'Unpaid'}</span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className={styles.meta}>
             <FaCalendar className="w-5 h-5" style={{ color: color.green }} />
             <span className="text-sm">{new Date(internship.createdAt).toLocaleDateString()}</span>
           </div>
         </div>
-        <div className="flex justify-between items-center">
-          <div className="text-sm text-gray-500">{internship.source} - credit</div>
-          <div className="flex space-x-4">
-            <button
-              onClick={() => onViewDescription(internship.description)}
-              className="py-2 px-6 rounded-xl flex items-center gap-2 border border-[#38B5AA] text-[#38B5AA] hover:bg-[#F97316] hover:text-white transition-colors"
-            >
-              View Description
-            </button>
-            <a
-              href={internship.applicationLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white py-2 px-6 rounded-xl transition-colors flex items-center gap-2"
-              style={{ backgroundColor: color.green }}
-            >
+        <div className={styles.footer}>
+          <div className={styles.credits}>{internship.source} - credit</div>
+          <div className={styles.actions}>
+            <button onClick={() => onViewDescription(internship.description)} className={styles.btnOutline}>View Description</button>
+            <a href={internship.applicationLink} target="_blank" rel="noopener noreferrer" className={styles.btnSolid}>
               <span>Apply Now</span>
-              <FaExternalLinkAlt className="w-4 h-4" />
+              <FaExternalLinkAlt className="w-4 h-4" style={{ marginLeft: 8 }} />
             </a>
           </div>
         </div>

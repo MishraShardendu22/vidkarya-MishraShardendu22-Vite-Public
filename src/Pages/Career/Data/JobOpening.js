@@ -1,50 +1,64 @@
-// Sample
-// const JobOpeningData = [
-//     {
-//         id: 1,
-//         title: "Backend Developer",
-//         company: "CodeWave",
-//         location: "San Francisco, USA",
-//         startDate: "May 1, 2025",
-//         salary: "$80,000/year",
-//         applicationLink: "#"
-//     },
-//     {
-//         id: 2,
-//         title: "Machine Learning Engineer",
-//         company: "AI Innovators",
-//         location: "New York, USA",
-//         startDate: "Apr 1, 2025",
-//         salary: "$100,000/year",
-//         applicationLink: "#"
-//     },
-//     {
-//         id: 3,
-//         title: "Frontend Developer",
-//         company: "PixelPerfect",
-//         location: "London, UK",
-//         startDate: "Jun 15, 2025",
-//         salary: "£70,000/year",
-//         applicationLink: "#"
-//     },
-//     {
-//         id: 4,
-//         title: "DevOps Engineer",
-//         company: "CloudOps Solutions",
-//         location: "Sydney, Australia",
-//         startDate: "Jul 1, 2025",
-//         salary: "AU$95,000/year",
-//         applicationLink: "#"
-//     },
-//     {
-//         id: 5,
-//         title: "Full Stack Developer",
-//         company: "NextGen Tech",
-//         location: "Toronto, Canada",
-//         startDate: "Aug 1, 2025",
-//         salary: "CA$85,000/year",
-//         applicationLink: "#"
-//     }
-// ];
+const JobOpeningData = [
+  {
+    _id: 'job-001',
+    title: 'Backend Engineer (Node.js)',
+    company: 'CodeWave Labs',
+    location: 'Bengaluru, India',
+    createdAt: '2025-10-10T10:00:00.000Z',
+    salary: '₹18–28 LPA',
+    about: 'Build scalable APIs, databases, and internal tools for our SaaS platform.',
+    description: '<p>We are looking for a Backend Engineer with strong Node.js and PostgreSQL experience. Familiarity with Redis, Docker, and cloud deployments is a plus.</p>',
+    applicationLink: '#',
+    source: 'LinkedIn',
+  },
+  {
+    _id: 'job-002',
+    title: 'Machine Learning Engineer',
+    company: 'Aether AI',
+    location: 'Remote',
+    createdAt: '2025-10-09T09:00:00.000Z',
+    salary: '₹24–35 LPA',
+    about: 'Develop and ship ML models for personalization and recommendations.',
+    description: '<p>Experience with Python, PyTorch/TensorFlow, and MLOps tooling. Exposure to LLMs preferred.</p>',
+    applicationLink: '#',
+    source: 'Wellfound',
+  },
+  {
+    _id: 'job-003',
+    title: 'Frontend Engineer (React)',
+    company: 'PixelPerfect Studio',
+    location: 'Mumbai, India',
+    createdAt: '2025-10-07T12:00:00.000Z',
+    salary: '₹14–22 LPA',
+    about: 'Craft beautiful, accessible UIs and collaborate closely with design.',
+    description: '<p>Expertise in React, TypeScript, bundlers, and performance optimization. CSS-in-JS or CSS Modules experience required.</p>',
+    applicationLink: '#',
+    source: 'Company Careers',
+  },
+  {
+    _id: 'job-004',
+    title: 'DevOps Engineer',
+    company: 'CloudOps Solutions',
+    location: 'Hyderabad, India',
+    createdAt: '2025-10-05T10:30:00.000Z',
+    salary: '₹20–30 LPA',
+    about: 'Automate CI/CD, observability, and infrastructure with Kubernetes.',
+    description: '<p>Hands-on with Kubernetes, Helm, Terraform, and observability stacks (Prometheus/Grafana/ELK).</p>',
+    applicationLink: '#',
+    source: 'Naukri',
+  },
+  {
+    _id: 'job-005',
+    title: 'Full Stack Developer',
+    company: 'NextGen Tech',
+    location: 'Pune, India',
+    createdAt: '2025-10-02T08:00:00.000Z',
+    salary: '₹12–20 LPA',
+    about: 'Own features end-to-end across backend and frontend stacks.',
+    description: '<p>Experience with React, Node.js, relational databases, and testing frameworks.</p>',
+    applicationLink: '#',
+    source: 'Hirect',
+  },
+];
 
-// export default JobOpeningData;
+export default JobOpeningData;

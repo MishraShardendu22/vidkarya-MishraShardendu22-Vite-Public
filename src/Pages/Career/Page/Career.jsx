@@ -4,9 +4,34 @@ import JobOpening from '../Components/JobOpening';
 import Hackathon from '../Components/Hackathon';
 import { Navbar } from '../../../Components';
 import React, { useState } from 'react';
+import Hero from '../Components/UI/Hero';
+import CategoryCard from '../Components/UI/CategoryCard';
+import { FaTrophy, FaUserGraduate, FaBriefcase } from 'react-icons/fa';
+import QuickPeekModal from '../Components/UI/QuickPeekModal';
+import { axios, CAREER } from '../../../api';
+import { sendReqToServer } from '../../../Hooks/useAxios';
+
+const palette = {
+  orange: '#F97316',
+  green: '#38B5AA',
+};
 
 const Career = () => {
   const [activePage, setActivePage] = useState('hackathon');
+  const [peek, setPeek] = useState({ open: false, type: null, items: [] });
+
+  const openPeek = async (type) => {
+    setPeek({ open: true, type, items: [] });
+    try {
+      let url = CAREER.getHackathon;
+      if (type === 'internship') url = CAREER.getInternship;
+      if (type === 'jobs') url = CAREER.getJob;
+      const { response } = await sendReqToServer({ axiosInstance: axios, url, method: 'GET' });
+      setPeek({ open: true, type, items: response?.data || [] });
+    } catch (e) {
+      setPeek({ open: true, type, items: [] });
+    }
+  };
 
   const renderContent = () => {
     switch (activePage) {
@@ -32,32 +57,53 @@ const Career = () => {
         }}
       />
 
-      <div className="relative z-10 min-h-screen bg-white/60 ">
+      <div className="relative z-10 min-h-screen bg-white/70">
         <Navbar />
 
-        <nav className="w-full max-w-4xl mx-auto px-6">
-          <ul className="flex justify-center border-b border-gray-200">
-            {['hackathon', 'internship', 'jobs'].map((item) => (
-              <li key={item} className="relative flex-1">
-                <button
-                  onClick={() => setActivePage(item)}
-                  className={`
-                    w-full px-8 py-4 text-base font-medium capitalize
-                    hover:text-orange-500 transition-colors duration-200
-                    ${activePage === item ? 'bg-orange-50 text-orange-500' : 'text-gray-500'}
-                  `}
-                >
-                  {item}
-                </button>
-                {activePage === item && (
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-orange-400 transition-all duration-200" />
-                )}
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {/* Page Hero */}
+        <Hero
+          title="Explore Opportunities That Shape Your Future"
+          subtitle="Discover curated hackathons, internships, and jobs — all in one place."
+        />
 
-        {renderContent()}
+        {/* Category Cards */}
+        <section className="w-[90%] mx-auto px-4 pb-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <CategoryCard
+              icon={FaTrophy}
+              title="Hackathons"
+              description="Compete, learn, and showcase your skills across domains."
+              onClick={() => { setActivePage('hackathon'); openPeek('hackathon'); }}
+            />
+            <CategoryCard
+              icon={FaUserGraduate}
+              title="Internships"
+              description="Launch your journey with roles tailored for learners."
+              onClick={() => { setActivePage('internship'); openPeek('internship'); }}
+            />
+            <CategoryCard
+              icon={FaBriefcase}
+              title="Job Listings"
+              description="Find your next role at top companies and startups."
+              onClick={() => { setActivePage('jobs'); openPeek('jobs'); }}
+            />
+          </div>
+        </section>
+
+        {/* Tabs removed in favor of hero + category cards */}
+
+        {/* Page Content */}
+        <main className="w-full max-w-5xl mx-auto px-6 py-8">
+          {renderContent()}
+        </main>
+
+        <QuickPeekModal
+          open={peek.open}
+          type={peek.type}
+          items={peek.items}
+          onClose={() => setPeek({ open: false, type: null, items: [] })}
+          onGo={() => setPeek({ open: false, type: null, items: [] })}
+        />
       </div>
     </div>
   );

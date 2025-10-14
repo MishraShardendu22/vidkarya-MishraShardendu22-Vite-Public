@@ -1,0 +1,22 @@
+.wrap {
+	background: rgba(255,255,255,0.75);
+	border: 1px solid rgba(0,0,0,0.06);
+	border-radius: 14px;
+	padding: 12px;
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0,1fr));
+	gap: 12px;
+	box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 1024px) {
+	.wrap { grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+@media (max-width: 768px) {
+	.wrap { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 520px) {
+	.wrap { grid-template-columns: 1fr; }
+}
+
+

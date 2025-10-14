@@ -41,8 +41,9 @@ const Internship = () => {
   return (
     <div className="w-[90%] mx-auto px-4 pb-10">
       <div className="text-center">
-        <p className="heading">Discover Internship</p>
-        <p className="text-[#838383] text-3xl mb-10">
+        <p className="heading">Discover Internships</p>
+        <div className="mx-auto mt-2 h-1 w-24 rounded-full" style={{ backgroundColor: '#38B5AA' }} />
+        <p className="text-[#838383] text-xl md:text-2xl mb-10 mt-3">
           Launch your career journey with diverse internship opportunities.
         </p>
       </div>

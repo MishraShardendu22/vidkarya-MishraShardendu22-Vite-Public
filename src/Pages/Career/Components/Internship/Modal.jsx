@@ -1,5 +1,6 @@
 import React from 'react';
 import parse from 'html-react-parser';
+import modal from '../UI/Modal.module.css';
 
 const color = {
   orange: '#F97316',
@@ -9,26 +10,18 @@ const color = {
 const InternshipDescriptionModal = ({ description, onClose }) => {
   if (!description) return null;
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="absolute inset-0 bg-black opacity-50" onClick={onClose}></div>
-      <div className="bg-white p-6 rounded-lg shadow-lg z-10 w-11/12 md:w-3/4 lg:w-1/2">
-        <h2 className="text-2xl font-semibold mb-4 text-center" style={{ color: color.orange }}>
-          Internship Description
-        </h2>
-        <div className="max-h-96 overflow-auto">
-          <div>{parse(description)}</div>
-        </div>
-        <div className="mt-4 flex justify-end">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 rounded-lg text-white"
-            style={{ backgroundColor: color.orange }}
-          >
-            Close
-          </button>
+    <>
+      <div className={modal.overlay} onClick={onClose} />
+      <div className={modal.dialog}>
+        <div className={modal.panel} role="dialog" aria-modal="true" aria-label="Internship Description">
+          <h2 className={modal.title}>Internship Description</h2>
+          <div className={modal.body}>{parse(description)}</div>
+          <div className={modal.footer}>
+            <button onClick={onClose} className={modal.closeBtn}>Close</button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

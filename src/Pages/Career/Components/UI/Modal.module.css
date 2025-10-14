@@ -1,0 +1,32 @@
+.overlay {
+	position: fixed; inset: 0; z-index: 50;
+	background: rgba(0,0,0,0.5);
+	opacity: 0; animation: fadeIn 200ms ease forwards;
+}
+
+.dialog {
+	position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 60;
+}
+
+.panel {
+	background: #fff;
+	width: min(720px, 92vw);
+	max-height: 80vh;
+	border-radius: 14px;
+	box-shadow: 0 20px 48px rgba(0,0,0,0.18);
+	padding: 20px;
+	opacity: 0; transform: translateY(8px);
+	animation: slideUp 220ms ease forwards;
+	border: 1px solid rgba(0,0,0,0.06);
+}
+
+.title { font-size: 20px; font-weight: 800; margin: 0 0 12px; color: #F97316; text-align: center; }
+.body { overflow: auto; max-height: calc(80vh - 120px); color: #374151; }
+.footer { margin-top: 14px; display: flex; justify-content: flex-end; }
+.closeBtn { background: #F97316; color: #fff; padding: 10px 14px; border-radius: 10px; border: none; font-weight: 700; cursor: pointer; }
+.closeBtn:focus-visible { outline: 2px solid #38B5AA; outline-offset: 2px; }
+
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+
+

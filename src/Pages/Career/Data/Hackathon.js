@@ -1,68 +1,64 @@
-// Sample
-// export const HackathonData = [
-//   {
-//       id: 1,
-//       title: "AI for Social Good Hackathon",
-//       theme: "Developing AI solutions for social challenges",
-//       startDate: "Jan 10, 2025",
-//       endDate: "Jan 12, 2025",
-//       prizes: [
-//           "1st Place: $5000",
-//           "2nd Place: $3000",
-//           "3rd Place: $1500"
-//       ],
-//       problemStatementLink: "#"
-//   },
-//   {
-//       id: 2,
-//       title: "Climate Tech Innovation Challenge",
-//       theme: "Creating sustainable technology to find solutions",
-//       startDate: "Feb 5, 2025",
-//       endDate: "Feb 7, 2025",
-//       prizes: [
-//           "1st Place: $7500",
-//           "2nd Place: $4000",
-//           "3rd Place: $2000"
-//       ],
-//       problemStatementLink: "#"
-//   },
-//   {
-//       id: 3,
-//       title: "FinTech Revolution Hackathon",
-//       theme: "Innovative solutions for modern finance",
-//       startDate: "Mar 15, 2025",
-//       endDate: "Mar 17, 2025",
-//       prizes: [
-//           "1st Place: $6000",
-//           "2nd Place: $3500",
-//           "3rd Place: $2000"
-//       ],
-//       problemStatementLink: "#"
-//   },
-//   {
-//       id: 4,
-//       title: "HealthTech Breakthrough Challenge",
-//       theme: "Using technology to transform healthcare",
-//       startDate: "Apr 20, 2025",
-//       endDate: "Apr 22, 2025",
-//       prizes: [
-//           "1st Place: $8000",
-//           "2nd Place: $5000",
-//           "3rd Place: $2500"
-//       ],
-//       problemStatementLink: "#"
-//   },
-//   {
-//       id: 5,
-//       title: "EdTech Innovators Hackathon",
-//       theme: "Revolutionizing education through technology",
-//       startDate: "Jun 1, 2025",
-//       endDate: "Jun 3, 2025",
-//       prizes: [
-//           "1st Place: $7000",
-//           "2nd Place: $4000",
-//           "3rd Place: $2000"
-//       ],
-//       problemStatementLink: "#"
-//   }
-// ];
+export const HackathonData = [
+  {
+    _id: 'hack-001',
+    title: 'AI for Social Good Hackathon',
+    theme: 'Build practical AI solutions for healthcare, education, and accessibility.',
+    startDate: '2025-12-18T09:00:00.000Z',
+    endDate: '2025-12-20T18:00:00.000Z',
+    location: 'Hybrid — Bengaluru + Online',
+    prizes: ['1st: ₹3,50,000', '2nd: ₹2,00,000', '3rd: ₹1,00,000'],
+    source: 'DevPost',
+    problemStatementLink: '#',
+    createdAt: '2025-10-01T10:00:00.000Z',
+  },
+  {
+    _id: 'hack-002',
+    title: 'Climate Tech Innovation Challenge',
+    theme: 'Sustainability, energy efficiency, and carbon tracking tools.',
+    startDate: '2026-01-10T08:00:00.000Z',
+    endDate: '2026-01-12T17:00:00.000Z',
+    location: 'Pune, India',
+    prizes: ['1st: ₹5,00,000', '2nd: ₹2,50,000', '3rd: ₹1,25,000'],
+    source: 'HackerEarth',
+    problemStatementLink: '#',
+    createdAt: '2025-10-03T10:00:00.000Z',
+  },
+  {
+    _id: 'hack-003',
+    title: 'FinTech Revolution Hackathon',
+    theme: 'Payments, lending, fraud detection, and financial inclusion.',
+    startDate: '2026-02-05T09:00:00.000Z',
+    endDate: '2026-02-06T18:00:00.000Z',
+    location: 'Mumbai, India',
+    prizes: ['1st: ₹4,00,000', '2nd: ₹2,00,000', 'Best UX: ₹50,000'],
+    source: 'TechGig',
+    problemStatementLink: '#',
+    createdAt: '2025-10-05T10:00:00.000Z',
+  },
+  {
+    _id: 'hack-004',
+    title: 'HealthTech Breakthrough Challenge',
+    theme: 'Remote diagnostics, EMR tooling, and wellness gamification.',
+    startDate: '2026-03-12T09:30:00.000Z',
+    endDate: '2026-03-14T18:30:00.000Z',
+    location: 'Remote',
+    prizes: ['1st: ₹6,00,000', '2nd: ₹3,00,000', 'Student Track: ₹1,00,000'],
+    source: 'MLH',
+    problemStatementLink: '#',
+    createdAt: '2025-10-06T10:00:00.000Z',
+  },
+  {
+    _id: 'hack-005',
+    title: 'EdTech Innovators Hackathon',
+    theme: 'Interactive learning, assessment tooling, and AI tutoring.',
+    startDate: '2026-04-20T08:30:00.000Z',
+    endDate: '2026-04-21T18:00:00.000Z',
+    location: 'Chennai, India',
+    prizes: ['1st: ₹3,00,000', '2nd: ₹1,50,000', '3rd: ₹75,000'],
+    source: 'Devfolio',
+    problemStatementLink: '#',
+    createdAt: '2025-10-08T10:00:00.000Z',
+  },
+];
+
+export default HackathonData;

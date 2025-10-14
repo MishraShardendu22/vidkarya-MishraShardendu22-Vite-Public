@@ -1,0 +1,48 @@
+.card {
+	position: relative;
+	width: 100%;
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+	overflow: hidden;
+	transition: transform 200ms ease, box-shadow 200ms ease;
+	border: 1px solid rgba(0,0,0,0.05);
+}
+
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.10); }
+
+.sideAccent {
+	position: absolute;
+	top: 0; bottom: 0; left: 0;
+	width: 10px;
+}
+
+.content { padding: 24px 24px 20px 28px; }
+.title { font-size: 18px; font-weight: 700; color: #111827; text-align: center; margin: 0 0 8px; }
+.about { color: #6b7280; font-size: 14px; margin: 12px 0 16px; }
+
+.metaGrid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin-bottom: 12px; }
+.meta { display: inline-flex; align-items: center; gap: 8px; color: #374151; font-size: 14px; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 16px; }
+.tag { font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.08); background: rgba(56,181,170,0.08); color: #0f766e; }
+.tagWarn { background: rgba(249,115,22,0.08); color: #9a3412; }
+
+.footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.credits { font-size: 12px; color: #6b7280; }
+.actions { display: inline-flex; gap: 12px; align-items: center; }
+
+.btnOutline { border: 1px solid #38B5AA; color: #38B5AA; background: transparent; padding: 10px 16px; border-radius: 10px; font-weight: 600; cursor: pointer; transition: background 160ms ease, color 160ms ease; }
+.btnOutline:hover { background: #F97316; color: #fff; }
+
+.btnSolid { background: #38B5AA; color: #fff; padding: 10px 16px; border-radius: 10px; font-weight: 600; cursor: pointer; border: none; }
+.btnSolid:focus-visible, .btnOutline:focus-visible { outline: 2px solid #F97316; outline-offset: 2px; }
+
+@media (max-width: 520px) {
+	.metaGrid { grid-template-columns: 1fr; }
+	.footer { flex-direction: column; align-items: flex-start; }
+	.actions { width: 100%; }
+	.actions > * { flex: 1; text-align: center; }
+}
+
+
