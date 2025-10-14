@@ -113,13 +113,13 @@
 }
 
 .notes-search:hover > .notes-searchButton {
-  background: #d9d9d9;
   color: black;
 }
 
 .notes-searchButton {
-  color: black;
-  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  border-radius: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -150,122 +150,130 @@
 
 /* css for notes carasole */
 .notes-carousel-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+gap: 1rem;
+width: 100%;
+margin-top: 50px;
 }
-
 .notes-carousel {
-  max-width: 65%;
-  display: inline-block;
-  overflow: hidden;
+width: 65%;
+max-width: 65%;
+overflow: hidden;
+border-radius: 0.3125rem;
 }
-
 .carousel-slideshowSlider {
-  white-space: nowrap;
-  transition: ease 1000ms;
-  gap: 1rem;
+display: flex;
+transition: transform 1s ease;
+gap: 1rem;
 }
-
 .carousel {
-  display: inline-block;
-  margin-block: 1em;
-  padding-inline: 2em;
-  padding-inline: 3em;
-  border-radius: 0.3125rem;
-  border: 1px solid #c3c3c3;
-  background: #fff;
-  box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.25);
-  width: 100%;
+flex: 0 0 calc(100% - 1rem);
+display: flex;
+min-width: 0;
+margin: 0;
+padding: 0;
 }
-
 .notes-carousel-data {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+display: flex;
+justify-content: space-around;
+align-items: center;
+width: 100%;
+border: 1px solid #c3c3c3;
+box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.25);
+padding: 1em 3em;
+box-sizing: border-box;
+gap: 2rem;
 }
-
 .notes-carousel-text-data {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 50%;
-  gap: 1rem;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+flex: 1;
+min-width: 0;
+gap: 1rem;
 }
-
 .notes-carasole-heading {
-  font-family: 'Open Sans', sans-serif;
-  font-size: x-large;
-  text-align: start;
-  font-weight: 600;
+font-family: 'Open Sans', sans-serif;
+font-size: x-large;
+text-align: start;
+font-weight: 600;
+margin: 0;
 }
-
 .notes-carasole-paragraph {
-  font-family: 'Inter Tight', sans-serif;
-  white-space: pre-wrap;
+font-family: 'Inter Tight', sans-serif;
+white-space: pre-wrap;
+margin: 0;
 }
-
 .carousel-img {
-  display: flex;
-  justify-content: flex-end;
-  width: 15.25rem;
-  height: 13rem;
-  flex-shrink: 0;
+display: flex;
+justify-content: flex-end;
+align-items: center;
+width: 15.25rem;
+height: 13rem;
+flex-shrink: 0;
+overflow: hidden;
 }
-
+.carousel-img img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
 .notes-carousel-section:hover > .arrow {
-  display: block;
+display: flex;
+justify-content: center;
+align-items: center;
 }
-
 .arrow {
-  display: none;
-  filter: drop-shadow(0px 0px 5px #555);
-  color: white;
-  width: 2rem;
-  height: 2rem;
-  position: relative;
-  z-index: 5;
-  margin-inline: -2rem;
-  transition: 0.4s;
+display: none;
+filter: drop-shadow(0px 0px 5px #555);
+color: white;
+width: 2rem;
+height: 2rem;
+flex-shrink: 0;
+transition: transform 0.4s, opacity 0.4s;
+background: none;
+border: none;
+cursor: pointer;
+padding: 0;
+font-size: 2rem;
+line-height: 1;
 }
-
 .arrow:hover {
-  cursor: pointer;
+transform: scale(1.1);
+opacity: 0.8;
 }
-
-.arrow-left {
-  left: 1rem;
+.arrow:active {
+transform: scale(0.95);
 }
-
-.arrow-right {
-  right: 1rem;
-}
-
 .indicators {
-  display: flex;
-  /* position: absolute; */
-  justify-content: center;
-  margin-bottom: 1rem;
-  /* bottom: 1rem; */
+display: flex;
+justify-content: center;
+margin-top: 1rem;
+gap: 0.2rem;
+width: 100%;
 }
-
 .indicator {
-  background-color: white;
-  height: 0.5rem;
-  width: 0.5rem;
-  border-radius: 100%;
-  border: none;
-  outline: none;
-  box-shadow: 0px 0px 5px #555;
-  margin: 0 0.2rem;
-  cursor: pointer;
+background-color: grey;
+height: 0.5rem;
+width: 0.5rem;
+border-radius: 50%;
+border: none;
+outline: none;
+box-shadow: 0px 0px 5px #555;
+cursor: pointer;
+padding: 0;
+transition: background-color 0.3s;
 }
-
-.indicator-inactive {
-  background-color: grey;
+.indicator:focus-visible {
+outline: 2px solid #333;
+outline-offset: 2px;
 }
-
+.indicator.active {
+background-color: white;
+}
 /* css for Recommended notes */
 .RecommendedNotesSection {
   margin-block: 2rem;
@@ -306,6 +314,8 @@
 .RecNotesTopRatedBtn,
 .RecNotesNewBtn,
 .RecNotesMostViewedBtn {
+  background-color: transparent;
+  border: none;
   font-family: 'Inter Tight', sans-serif;
   font-size: 1rem;
   /* font-weight: 500; */
@@ -462,3 +472,138 @@
 .notes-options-box div {
   @apply flex gap-3 items-center cursor-pointer px-4 hover:bg-[#CCC];
 }
+
+/* Main Container */
+.filter-card {
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.filter-divider {
+  background-color: #ccc;
+  height: 0.2px;
+}
+
+/* Header Section */
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.filter-header:hover {
+  background-color: #f6f6f6;
+}
+
+.filter-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #6f6c6c;
+  margin: 0;
+}
+
+.filter-icon {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Filter Options Container */
+.filter-options {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.filter-options.hidden {
+  display: none;
+  max-height: 0;
+  opacity: 0;
+}
+
+.filter-options.visible {
+  display: block;
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* Individual Filter Option */
+.filter-option {
+  display: flex;
+  padding: 0.25rem;
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.filter-option:hover {
+  background-color: #f9f9f9;
+  padding-left: 0.5rem;
+}
+
+/* Checkbox Styling */
+.filter-checkbox {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.75rem;
+  cursor: pointer;
+  accent-color: #4ade80;
+  border-radius: 0.25rem;
+}
+
+.filter-checkbox:hover {
+  opacity: 0.8;
+}
+
+/* Label Styling */
+.filter-label {
+  cursor: pointer;
+  user-select: none;
+  color: #333;
+  transition: color 0.2s ease;
+}
+
+.filter-label:hover {
+  color: #000;
+}
+
+/* Show More/Less Button */
+.filter-button-container {
+  padding: 0.5rem 0;
+  text-align: left;
+}
+
+.filter-button {
+  padding: 0.25rem 1rem;
+  color: rgb(72, 106, 240) !important;
+  font-weight: 700;
+  text-transform: none !important;
+  transition: all 0.2s ease;
+}
+
+.filter-button:hover {
+  background-color: rgba(74, 222, 128, 0.1) !important;
+}
+
+/* Smooth animations */
+@media (prefers-reduced-motion: no-preference) {
+  .filter-options {
+    animation: slideDown 0.3s ease;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

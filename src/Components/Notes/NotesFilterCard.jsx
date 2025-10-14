@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { RiArrowDropDownLine, RiArrowDropUpLine } from '../../lib/icons';
 import { AppStates } from '../../Context/appContext.jsx';
 import Button from '@mui/material/Button';
+import './notes.css';
 
 function NotesFilterCard({ filterName, options }) {
   const { filter, setfilter } = AppStates();
@@ -21,50 +22,63 @@ function NotesFilterCard({ filterName, options }) {
   };
 
   return (
-    <div className="p-1  rounded-lg  my-2">
-      <div className="bg-[#CCC] h-[0.2px]"></div>
+    <div className="filter-card">
+      <div className="filter-divider"></div>
 
-      {/*  H E A D E R  */}
+      {/* HEADER */}
       <div
-        className="flex justify-between items-center cursor-pointer p-2 hover:bg-[#F6F6F6]"
+        className="filter-header"
         onClick={() => setOpenOptions(!openOptions)}
       >
-        <p className="text-lg font-semibold text-[#6F6C6C] ">{filterName}</p>
-        <div className="w-fit">
+        <p className="filter-title">{filterName}</p>
+        <div className="filter-icon">
           {openOptions ? <RiArrowDropUpLine size={30} /> : <RiArrowDropDownLine size={30} />}
         </div>
       </div>
 
-      {/* F I L T E R     O P T I O N S */}
-      <div className={`${openOptions ? 'block' : 'hidden'} filter-options `}>
+      {/* FILTER OPTIONS */}
+      <div className={`filter-options ${openOptions ? 'visible' : 'hidden'}`}>
         {truncatedContent.map((ele, i) => {
           return (
-            <div className="flex p-1 my-1 text-sm items-center" key={i}>
+            <div className="filter-option" key={i}>
               <input
                 type="checkbox"
                 checked={checkedState[i]}
                 onChange={() => handleCheckBoxChange(i)}
-                className=" w-4 mr-3 h-4 cursor-pointer accent-green-400	rounded"
+                className="filter-checkbox"
                 name={ele}
-                id=""
+                id={`filter-${filterName}-${i}`}
               />
 
               {filterName === 'Uploaded' ? (
-                <label htmlFor={ele}> {`Last ${ele} month`} </label>
+                <label htmlFor={`filter-${filterName}-${i}`} className="filter-label">
+                  {`Last ${ele} month`}
+                </label>
               ) : filterName === 'Rating' ? (
-                <label htmlFor={ele}> {ele}+ ⭐ </label>
+                <label htmlFor={`filter-${filterName}-${i}`} className="filter-label">
+                  {ele}+ ⭐
+                </label>
               ) : (
-                <label htmlFor={ele}> {ele} </label>
+                <label htmlFor={`filter-${filterName}-${i}`} className="filter-label">
+                  {ele}
+                </label>
               )}
             </div>
           );
         })}
 
-        {/* S H O W    M O R E   B U T T O N  */}
+        {/* SHOW MORE BUTTON */}
         {options.length > 3 && (
-          <Button variant="text" size="small" onClick={() => setExpanded(!expanded)}>
-            {expanded ? 'Show Less' : 'Show More'}
-          </Button>
+          <div className="filter-button-container">
+            <Button 
+              variant="text" 
+              size="small" 
+              onClick={() => setExpanded(!expanded)}
+              className="filter-button"
+            >
+              {expanded ? 'Show Less' : 'Show More'}
+            </Button>
+          </div>
         )}
       </div>
     </div>

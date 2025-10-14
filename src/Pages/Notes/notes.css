@@ -2,12 +2,43 @@
   --Color_1: #005c6a;
 }
 
-.filter-options {
-  transition: all 0.5s;
+* {
+  padding: 0;
+  margin: 0;
 }
+
+/* Main Layout */
+.all-notes-display {
+  display: flex;
+  gap: 1.25rem;
+  min-height: 60rem;
+}
+
+/* Filter Section */
+.filter-sort-section {
+  width: 30%;
+  position: sticky;
+  top: 0;
+  height: fit-content;
+  padding: 10px;
+}
+
+.filter-box {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Filter Button */
 .filter-btn {
   color: black !important;
   border-color: black !important;
+  transition: all 0.3s ease;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  text-transform: capitalize;
 }
 
 .filter-btn:hover {
@@ -15,27 +46,169 @@
   background-color: var(--Color_1) !important;
   color: white !important;
 }
-.notes-rating div {
-  background-color: yellow;
-  clip-path: polygon(
-    50% 0%,
-    61% 35%,
-    98% 35%,
-    68% 57%,
-    79% 91%,
-    50% 70%,
-    21% 91%,
-    32% 57%,
-    2% 35%,
-    39% 35%
-  );
+
+.filter-btn:active {
+  transform: scale(0.98);
 }
 
+/* Sort Button */
+.sort-btn {
+  transition: all 0.3s ease;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.sort-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Filter Panel */
+.filter-panel-wrapper {
+  animation: slideInLeft 0.3s ease-out;
+  margin-top: 1rem;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Notes Container */
+.notesContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.notesSub {
+  width: fit-content;
+  background-color: #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+  margin: 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.noteHead {
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin: 0;
+}
+
+.noteSubHead {
+  color: #ea580c;
+  font-weight: 700;
+}
+
+.cancel-btn {
+  margin-left: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+  opacity: 0.7;
+}
+
+/* No Results */
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.ImageNotFound {
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  max-width: 400px;
+}
+
+.notFound {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Notes Grid */
 .notes-wrapper {
+  height: 85%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
   scrollbar-width: 0;
 }
 
 .notes-wrapper::-webkit-scrollbar {
   width: 0;
   height: 0;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 0.25rem;
+  margin: 0.5rem 0;
+  margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .all-notes-display {
+    flex-direction: column;
+    gap: 1rem;
+    min-height: auto;
+  }
+
+  .filter-sort-section {
+    width: 100%;
+    position: static;
+    height: auto;
+  }
+
+  .filter-box {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .all-notes-display {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .filter-sort-section {
+    width: 100%;
+  }
+
+  .filter-box {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-left: 0;
+  }
+
+  .filter-btn,
+  .sort-btn {
+    width: 100%;
+  }
 }
