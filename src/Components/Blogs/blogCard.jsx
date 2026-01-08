@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Card } from '@mui/material';
 import './blogs.css';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { truncateText } from '../../Helpers';
 
 const BlogCard = ({ blog }) => {

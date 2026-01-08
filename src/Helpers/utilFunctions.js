@@ -5,7 +5,7 @@ import { getJSONFromFirebase } from './firebaseUtil';
 // Input: Array of Strings.
 // Output: A single string containing all elements separated by commas.
 function arrayToStr(arr) {
-  if (arr == null || arr.length === 0) return '';
+  if (arr === null || arr === undefined || arr.length === 0) return '';
 
   let str = '';
 
@@ -111,34 +111,39 @@ function getYearAndBranch(email) {
 }
 
 async function getTimeTableData(email) {
-  const [year, branch] = getYearAndBranch(email);
-  if (!year || !branch) return [];
+  try {
+    const [year, branch] = getYearAndBranch(email);
+    if (!year || !branch) return [];
 
-  const timeTable1stYear = await getJSONFromFirebase('timetable/timetable1');
-  const timeTable2ndYear = await getJSONFromFirebase('timetable/timetable2');
-  const timeTable3rdYear = await getJSONFromFirebase('timetable/timetable3');
-  const timeTable4thYear = await getJSONFromFirebase('timetable/timetable4');
+    const timeTable1stYear = await getJSONFromFirebase('timetable/timetable1');
+    const timeTable2ndYear = await getJSONFromFirebase('timetable/timetable2');
+    const timeTable3rdYear = await getJSONFromFirebase('timetable/timetable3');
+    const timeTable4thYear = await getJSONFromFirebase('timetable/timetable4');
 
-  const branchIndexMap = {
-    CSE: 0,
-    ECE: 1,
-    DSAI: 2,
-  };
+    const branchIndexMap = {
+      CSE: 0,
+      ECE: 1,
+      DSAI: 2,
+    };
 
-  const timeTables = {
-    1: timeTable1stYear,
-    2: timeTable2ndYear,
-    3: timeTable3rdYear,
-    4: timeTable4thYear,
-  };
+    const timeTables = {
+      1: timeTable1stYear,
+      2: timeTable2ndYear,
+      3: timeTable3rdYear,
+      4: timeTable4thYear,
+    };
 
-  const branchIndex = branchIndexMap[branch];
+    const branchIndex = branchIndexMap[branch];
 
-  if (year in timeTables && branchIndex !== undefined) {
-    return timeTables[year][branchIndex];
+    if (year in timeTables && branchIndex !== undefined) {
+      return timeTables[year][branchIndex] || [];
+    }
+
+    return [];
+  } catch (error) {
+    console.error('Failed to fetch timetable data:', error);
+    return [];
   }
-
-  return [];
 }
 
 function convertToDate(dateString) {

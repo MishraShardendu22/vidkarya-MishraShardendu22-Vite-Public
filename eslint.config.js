@@ -10,7 +10,10 @@ export default [
     files: ['**/*.{js,jsx}'],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        React: 'readonly',
+      },
       parserOptions: {
         ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
@@ -27,10 +30,21 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      // Strict error checking
       'no-unused-vars': ['error', { 
         varsIgnorePattern: '^[A-Z_]',
-        argsIgnorePattern: '^_'
+        argsIgnorePattern: '^_',
+        ignoreRestSiblings: true,
       }],
+      'no-undef': 'error',
+      'no-console': 'warn',
+      'no-debugger': 'error',
+      'eqeqeq': ['error', 'always'],
+      'no-var': 'error',
+      'prefer-const': 'error',
+      // React hooks strict rules
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
     },
   },
 ]

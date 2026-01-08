@@ -59,7 +59,7 @@ function Projects() {
 
   const handlePagination = async (e, pageNumber) => {
     try {
-      var res;
+      let res;
       setloading(true);
       // CASE 1: Searching or filter
       if (searchTerm.length > 1 || !isFilterEmpty(filter)) {

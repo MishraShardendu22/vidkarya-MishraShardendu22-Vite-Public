@@ -14,7 +14,8 @@ async function getJSONFromFirebase(path) {
       return [];
     }
   } catch (error) {
-    console.error(error);
+    console.error('Firebase RTDB Error:', error.message);
+    // Return empty array instead of throwing to prevent white screen
     return [];
   }
 }

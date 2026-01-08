@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Button, Grid, Grid2 } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 // import BlogImg from "../../Assets/Images/Blogs/blog.gif"; check krna pdega ye page
 import { BLOG_ASSET } from "../../Assets/assetImages";

@@ -62,7 +62,7 @@ export default function RelatedNotesCard({
               setReletedNotesOptionBox(notesData._id);
             }}
           />
-          {openOptionsBox && reletedNotesOptionBox == notesData._id && (
+          {openOptionsBox && reletedNotesOptionBox === notesData._id && (
             <NotesOptionBox
               notesData={notesData}
               setNotesList={setNotesData}

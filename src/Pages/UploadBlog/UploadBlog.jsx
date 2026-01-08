@@ -9,6 +9,7 @@ import './CSS/UploadBlog.css';
 import { Editor } from '@tinymce/tinymce-react';
 import { uploadImageToCloud } from "../../Helpers";
 import { Navbar } from "../../Components";
+import DOMPurify from "dompurify";
 
 import InputLabel from "@mui/material/InputLabel";
 import { IoClose } from "react-icons/io5";
@@ -241,7 +242,7 @@ const UploadBlog = () => {
                     <p className="previewAuthor">Posted by: You</p>
                     <p className="previewTime">{formattedTime}</p>
                   </div>
-                  <div className="previewBody" dangerouslySetInnerHTML={{ __html: content }} />
+                  <div className="previewBody" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
                 </div>
               </div>
             )}

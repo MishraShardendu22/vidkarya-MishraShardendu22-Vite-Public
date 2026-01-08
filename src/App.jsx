@@ -11,6 +11,7 @@ import ReactGA from 'react-ga4';
 // Components (keep these as regular imports for critical path)
 import { Footer, ResetPassword, LoginAndSignup } from './Components';
 import LoadingSpinner from './Components/UI/LoadingSpinner';
+import ErrorBoundary from './Components/UI/ErrorBoundary';
 
 // Lazy load pages for code splitting
 const Home = lazy(() => import('./Pages/HomeV2/Home'));
@@ -52,7 +53,7 @@ function App() {
   }, [location]);
 
   return (
-    <>
+    <ErrorBoundary>
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
         <Route exact path="/" element={<Home />} />
@@ -183,7 +184,7 @@ function App() {
       <SpeedInsights />
       <ToastContainer position="top-center" limit={3} />
       <Footer />
-    </>
+    </ErrorBoundary>
   );
 }
 

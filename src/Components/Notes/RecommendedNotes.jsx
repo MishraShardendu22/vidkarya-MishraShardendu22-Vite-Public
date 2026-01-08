@@ -10,7 +10,7 @@ import { useToasts } from '../UI/toast';
 
 function RecommendedNotes() {
   // For maintaining list of notes to be viewed for each category
-  var [NotesData, setNotesData] = useState(dummyNotesData);
+  const [NotesData, setNotesData] = useState(dummyNotesData);
   const [recNotes, setrecNotes] = useState([]);
   const [category, setcategory] = useState(null);
   const { user: _user } = AppStates();

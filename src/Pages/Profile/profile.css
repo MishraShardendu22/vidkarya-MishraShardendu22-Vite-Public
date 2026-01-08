@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .profile-main span {
   @apply font-semibold text-lg underline;
 }

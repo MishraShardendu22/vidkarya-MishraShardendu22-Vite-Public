@@ -3,7 +3,7 @@ import styles from './styles/applicantCard.module.css';
 import { convertTimeToMomentsAgo, arrayToStr } from '../../../Helpers';
 import { CgSandClock } from 'react-icons/cg';
 import { AiOutlineLink } from 'react-icons/ai';
-import { SiVisualstudiocode } from 'react-icons/si';
+import { VscVscode } from 'react-icons/vsc';
 import { BiMailSend } from 'react-icons/bi';
 import { NAVBAR_ASSET } from '../../../Assets/assetImages';
 // import demoImg from "../../../Assets/Images/Navbar/DefaultUserDP.svg"
@@ -27,7 +27,7 @@ export default function ApplicantCard({ applicationData }) {
 
   async function handleClose(newStage) {
     // Case: No Change => No Updation
-    if (newStage == applicationData?.applicantStage) {
+    if (newStage === applicationData?.applicantStage) {
       setOpenDialog(false);
       return;
     }
@@ -55,9 +55,9 @@ export default function ApplicantCard({ applicationData }) {
 
         // update status in redux store
         const updatedProjectsData = myProjects.map((proj) => {
-          if (proj._id == applicationData.project) {
+          if (proj._id === applicationData.project) {
             const updatedApplications = proj.applications.map((application) => {
-              if (application._id == applicationData._id) {
+              if (application._id === applicationData._id) {
                 return { ...application, applicantStage: newStage };
               } else return application; // Keep other applications unchanged
             });
@@ -105,7 +105,7 @@ export default function ApplicantCard({ applicationData }) {
 
         {/* SKILLS */}
         <div className={styles.Details}>
-          <SiVisualstudiocode size={18} className={styles.DetailsLogo} />
+          <VscVscode size={18} className={styles.DetailsLogo} />
           <span className={styles.DetailsHead}>Skills: </span>
           <span className={styles.DetailsDesc}>{arrayToStr(applicationData?.skills)}</span>
         </div>

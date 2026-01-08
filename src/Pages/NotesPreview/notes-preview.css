@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 :root {
   --Color_1: #ff6e0f;
 }

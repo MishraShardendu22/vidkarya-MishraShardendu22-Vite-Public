@@ -12,7 +12,7 @@ export default function ProjectDetails(props) {
   // Filter applicants with given 'status'
   const getApplications = useCallback((status) => {
     const filteredApplication = project.applications.filter((ele) => {
-      return ele.applicantStage == status;
+      return ele.applicantStage === status;
     });
 
     return filteredApplication;
@@ -35,19 +35,19 @@ export default function ProjectDetails(props) {
 
         <div className={styles.nav}>
           <div
-            className={`${styles.navBtn} ${selectedList == 'APPLIED' && styles.navBtnClicked}`}
+            className={`${styles.navBtn} ${selectedList === 'APPLIED' && styles.navBtnClicked}`}
             onClick={() => setSelectedList('APPLIED')}
           >
             Applicants{' '}
           </div>
           <div
-            className={`${styles.navBtn} ${selectedList == 'SHORTLISTED' && styles.navBtnClicked}`}
+            className={`${styles.navBtn} ${selectedList === 'SHORTLISTED' && styles.navBtnClicked}`}
             onClick={() => setSelectedList('SHORTLISTED')}
           >
             Shortlisted{' '}
           </div>
           <div
-            className={`${styles.navBtn} ${selectedList == 'ACCEPTED' && styles.navBtnClicked}`}
+            className={`${styles.navBtn} ${selectedList === 'ACCEPTED' && styles.navBtnClicked}`}
             onClick={() => setSelectedList('ACCEPTED')}
           >
             Accepted{' '}

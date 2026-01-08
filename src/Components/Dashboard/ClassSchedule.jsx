@@ -52,7 +52,7 @@ function ClassSchedule() {
   }, [notify]);
 
   const calculatePointerPosition = useCallback(() => {
-    var position;
+    let position;
     const currentTime = time.getHours() * 60 + time.getMinutes();
     // const currentTime = 840
 

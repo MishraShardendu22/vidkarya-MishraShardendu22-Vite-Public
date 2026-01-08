@@ -27,7 +27,7 @@ const ApplyProject = ({ isOpen, closePopup, project }) => {
 
   async function handleApply() {
     // Case: Applicant is the Owner
-    if (user._id == project?.owner?._id) {
+    if (user._id === project?.owner?._id) {
       notify({
         type: 'INFO',
         message: "You can't apply to your own Project",

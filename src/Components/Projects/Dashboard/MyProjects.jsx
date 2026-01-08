@@ -10,7 +10,7 @@ export default function MyProjects({ projects }) {
 
   return (
     <>
-      {selectedProject == null ? (
+      {selectedProject === null ? (
         // Show All Projects Posted by me
         <div className={styles.projPageWrapper}>
           {projects?.length != 0 ? (

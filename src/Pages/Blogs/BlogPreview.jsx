@@ -9,6 +9,7 @@ import { convertToDate } from '../../Helpers';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Button, Grid } from '@mui/material';
+import DOMPurify from 'dompurify';
 
 function BlogPreview() {
   const { blogid } = useParams();
@@ -44,7 +45,7 @@ function BlogPreview() {
 
   useEffect(() => {
     fetchBlog();
-  }, [blogid]);
+  }, [fetchBlog]);
   return (
     <>
       <Navbar />
@@ -77,7 +78,7 @@ function BlogPreview() {
               </div>
             </div>
           </div>
-          <div className={styles.blogContent} dangerouslySetInnerHTML={{ __html: blog?.content }} />
+          <div className={styles.blogContent} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog?.content || '') }} />
         </div>
       )}
 

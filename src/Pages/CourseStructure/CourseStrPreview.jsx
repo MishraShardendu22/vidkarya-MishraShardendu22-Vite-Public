@@ -82,9 +82,9 @@ function CourseStrPreview() {
         <span className={styles.courseDesc}>
           <b> Text References: </b>
           <br />
-          {courseDetails?.references.map((ele) => {
+          {courseDetails?.references.map((ele, index) => {
             return (
-              <span>
+              <span key={index}>
                 {' '}
                 {ele} <br />{' '}
               </span>

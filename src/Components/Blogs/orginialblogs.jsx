@@ -73,7 +73,7 @@ const Orginialblogs = ({ searchString }) => {
             console.log('Blogs fetched:', data.body.currentBlogsPatch.length, 'blogs');
 
             // for counting total page number
-            var count = data.body.totalBlogs / 10;
+            let count = data.body.totalBlogs / 10;
             if (data.body.totalBlogs % 10 > 0) count++;
             setNopages(Math.round(count));
           } else {

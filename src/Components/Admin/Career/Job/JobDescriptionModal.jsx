@@ -1,4 +1,5 @@
 import React from 'react';
+import DOMPurify from 'dompurify';
 
 const color = {
   orange: '#F97316',
@@ -14,7 +15,7 @@ const JobDescriptionModal = ({ description, onClose }) => {
           Job Description
         </h2>
         <div className="max-h-96 overflow-auto">
-          <div dangerouslySetInnerHTML={{ __html: description }} />
+          <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }} />
         </div>
         <div className="mt-4 flex justify-end">
           <button

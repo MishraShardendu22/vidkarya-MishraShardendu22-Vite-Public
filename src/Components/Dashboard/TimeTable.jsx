@@ -24,8 +24,8 @@ const timeSlots = [
 // rollno specifies the roll number of the student
 
 function GetDay() {
-  var day = new Date().getDay();
-  var daylist = ['Sunday', 'Monday', 'Tuesday', 'Wednesday ', 'Thursday', 'Friday', 'Saturday'];
+  const day = new Date().getDay();
+  const daylist = ['Sunday', 'Monday', 'Tuesday', 'Wednesday ', 'Thursday', 'Friday', 'Saturday'];
   return daylist[day];
 }
 
@@ -37,10 +37,10 @@ function DashboardScroll({ Left }) {
 
   useEffect(() => {
     async function setTimeTableData() {
-      var timeTableData = await getTimeTableData(user?.email);
+      const timeTableData = await getTimeTableData(user?.email);
 
-      timeTableData.map((object) => {
-        if (object.day.trim().toLowerCase() == today.trim().toLowerCase()) {
+      timeTableData.forEach((object) => {
+        if (object.day.trim().toLowerCase() === today.trim().toLowerCase()) {
           setTimeTableArray(object.Data);
         }
       });

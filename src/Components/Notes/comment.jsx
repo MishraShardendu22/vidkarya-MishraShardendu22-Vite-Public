@@ -70,7 +70,7 @@ export default function Comment({
           setCommentId(_id);
         }}
       />
-      {commentOpenOptionsBox && _id == commentId && user._id === comment?.userId._id && (
+      {commentOpenOptionsBox && _id === commentId && user._id === comment?.userId._id && (
         <CommentOptionBox commentId={commentId} />
       )}
     </div>
